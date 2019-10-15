@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: coding-challenge
+
+---
+server:
+  port: 8080
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:h2:mem:gohenrydb
+    driverClassName: org.h2.Driver
+    username: coding
+    password: challenge
+    connectionTimeout: 2000
+  jpa:
+    datasource-platform: org.hibernate.dialect.H2Dialect
+logging:
+  level:
+    com.gohenry.coding.challenge: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

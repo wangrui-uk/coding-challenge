@@ -1,0 +1,7 @@
+docker stop $(docker ps -a -q)
+
+docker rm $(docker ps -a -q)
+
+docker rmi $(docker images -a -q)
+
+docker run -dit --hostname coding.challenge.gohenry.com --name gohenry-coding-challenge -p 8080:8080 gohenry-coding-challenge
