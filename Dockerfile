@@ -8,6 +8,6 @@ ADD target/gohenry-coding-challenge.jar /home/gohenry-coding-challenge.jar
 
 WORKDIR /home
 
-EXPOSE 80
+EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "gohenry-coding-challenge.jar"]
