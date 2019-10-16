@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ParentDto {
 
+    @With
     long id;
     @NotBlank(message = "Title cannot be empty")
     @NotNull(message = "Title cannot be empty")

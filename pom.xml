@@ -26,7 +26,6 @@
         <maven.compiler.version>3.8.1</maven.compiler.version>
         <maven.jar.version>3.1.2</maven.jar.version>
         <maven.surefire.version>3.0.0-M3</maven.surefire.version>
-        <maven.jmeter.version>2.9.0</maven.jmeter.version>
     </properties>
 
     <dependencies>
@@ -125,28 +124,6 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.lazerycode.jmeter</groupId>
-                <artifactId>jmeter-maven-plugin</artifactId>
-                <version>${maven.jmeter.version}</version>
-                <executions>
-                    <execution>
-                        <id>jmeter-tests</id>
-                        <goals>
-                            <goal>jmeter</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <testFilesDirectory>${project.basedir}/src/test/resources</testFilesDirectory>
-                    <resultsDirectory>${project.basedir}/target/jmeter</resultsDirectory>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
             </plugin>
         </plugins>
     </build>

@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import javax.validation.Valid;
@@ -32,9 +33,11 @@ public class ParentResource {
     @ApiResponses({
             @ApiResponse(code = 201, message = "Parent created", response = ParentDto.class),
             @ApiResponse(code = 400, message = "Unable to create parent", response = ErrorDetails.class),
+            @ApiResponse(code = 415, message = "Unsupported media type", response = ErrorDetails.class),
+            @ApiResponse(code = 422, message = "Unprocessable entity", response = ErrorDetails.class),
             @ApiResponse(code = 500, message = "Unable to create parent", response = ErrorDetails.class)
     })
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(code = HttpStatus.CREATED)
     public Mono<ParentDto> createParent(@RequestBody @NotNull @Valid ParentDto parent) {
         return this.parentService.createParent(parent);
@@ -55,9 +58,11 @@ public class ParentResource {
     @ApiResponses({
             @ApiResponse(code = 200, message = "Parent updated", response = ParentDto.class),
             @ApiResponse(code = 400, message = "Unable to update parent", response = ErrorDetails.class),
+            @ApiResponse(code = 415, message = "Unsupported media type", response = ErrorDetails.class),
+            @ApiResponse(code = 422, message = "Unprocessable entity", response = ErrorDetails.class),
             @ApiResponse(code = 500, message = "Unable to update parent", response = ErrorDetails.class)
     })
-    @PutMapping("/{id}")
+    @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ParentDto> updateParent(@PathVariable("id") @NotNull long id, @RequestBody @NotNull @Valid ParentDto parent) {
         return this.parentService.updateParent(id, parent);
     }

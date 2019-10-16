@@ -11,6 +11,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 import javax.validation.Valid;
@@ -31,9 +32,11 @@ public class ChildResource {
     @ApiResponses({
             @ApiResponse(code = 200, message = "Child updated", response = ChildDto.class),
             @ApiResponse(code = 400, message = "Unable to update child", response = ErrorDetails.class),
+            @ApiResponse(code = 415, message = "Unsupported media type", response = ErrorDetails.class),
+            @ApiResponse(code = 422, message = "Unprocessable entity", response = ErrorDetails.class),
             @ApiResponse(code = 500, message = "Unable to update child", response = ErrorDetails.class)
     })
-    @PutMapping("/{id}")
+    @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ChildDto> updateParent(@PathVariable("id") @NotNull long id, @RequestBody @NotNull @Valid ChildDto child) {
         return this.childService.updateChild(id, child);
     }

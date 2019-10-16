@@ -20,6 +20,7 @@ import java.time.LocalDate;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ChildDto {
 
+    @With
     long id;
     @NotBlank(message = "First name cannot be empty")
     @NotNull(message = "First name cannot be empty")

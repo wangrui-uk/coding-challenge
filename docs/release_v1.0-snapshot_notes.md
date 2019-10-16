@@ -12,6 +12,8 @@ What's New in v1.0-snapshot
 
 - Project add parent update endpoint: http://localhost:8080/parents/id
 
+- Project add children update endpoint: http://localhost:8080/children/id
+
 - Project add swagger API support: http://localhost:8080/swagger-ui.html
 
 Changes, Known Issues, and Workarounds

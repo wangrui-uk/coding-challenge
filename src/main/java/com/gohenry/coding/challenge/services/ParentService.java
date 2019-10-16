@@ -30,7 +30,7 @@ public class ParentService {
             if (Optional.ofNullable(parent).isEmpty()) {
                 return Mono.just(Parent.build(parentDto))
                         .map(this.parentRepository::save)
-                        .map(savedParent -> ParentDto.build(savedParent))
+                        .map(ParentDto::build)
                         .doOnError(throwable -> {
                             log.error("Unable to access data from DB", throwable);
                             throw new DatabaseConnectionException(throwable);
@@ -48,13 +48,7 @@ public class ParentService {
     public Mono<ParentDto> retrieveParent(long id) {
         try {
             Parent parent = this.parentRepository.findById(id).orElseThrow();
-            return Mono.just(parent)
-                    .map(this.parentRepository::save)
-                    .map(savedParent -> ParentDto.build(savedParent))
-                    .doOnError(throwable -> {
-                        log.error("Unable to access data from DB", throwable);
-                        throw new DatabaseConnectionException(throwable);
-                    });
+            return Mono.just(parent).map(ParentDto::build);
         } catch (NoSuchElementException e) {
             log.error("Unable to find parent", e);
             throw new ParentNotFoundException();
@@ -75,7 +69,7 @@ public class ParentService {
             parent.setSecondName(parentDto.getSecondName());
             return Mono.just(parent)
                     .map(this.parentRepository::save)
-                    .map(savedParent -> ParentDto.build(savedParent))
+                    .map(ParentDto::build)
                     .doOnError(throwable -> {
                         log.error("Unable to access data from DB", throwable);
                         throw new DatabaseConnectionException(throwable);

@@ -43,7 +43,7 @@ public class RestResponseExceptionHandler extends ResponseEntityExceptionHandler
                 .timestamp(System.currentTimeMillis())
                 .message(ex.getMessage())
                 .details(request.getDescription(false))
-                .build(), HttpStatus.BAD_REQUEST);
+                .build(), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler({ ParentExistedException.class, ParentNotFoundException.class, ChildNotFoundException.class })
