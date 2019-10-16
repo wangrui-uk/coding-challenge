@@ -23,6 +23,7 @@ docker build -t gohenry-coding-challenge:latest .
 
 - Copy scripts from [scripts](./scripts) directory
 - Make the script executable
+- Run in dev mode needs to turn on spring boot active profile to "local"
 ```
 chmod 700 ./dockerrun
 ```
